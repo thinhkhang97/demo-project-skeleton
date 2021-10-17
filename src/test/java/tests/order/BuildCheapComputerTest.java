@@ -27,6 +27,7 @@ public class BuildCheapComputerTest extends BaseTest {
         // Go to Shopping cart Page
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject);
+        orderingComputerFlow.verifyTotalPayment();
 
     }
 

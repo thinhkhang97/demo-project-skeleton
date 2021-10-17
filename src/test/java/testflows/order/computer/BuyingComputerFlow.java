@@ -10,14 +10,17 @@ import testdata.purchasing.ComputerDataObject;
 import testdata.purchasing.ComputerSpec;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
-public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
+public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
 
     private final WebDriver driver;
     private T essentialCompGeneric;
+    private final ShoppingCartPage shoppingCartPage;
 
     public BuyingComputerFlow(WebDriver driver) {
         this.driver = driver;
+        this.shoppingCartPage = new ShoppingCartPage(driver);
     }
 
     public BuyingComputerFlow<T> withComputerEssentialComp(Class<T> computerType) {
@@ -53,7 +56,7 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
     }
 
     public void verifyComputerAdded(ComputerDataObject simpleComputer) {
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
+
         double baseComputerPrice = BaseComputerPrice.valueOf(this.essentialCompGeneric.getType()).getValue();
 
         // Get additional fee
@@ -68,5 +71,19 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         // Compare
         double itemTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
         Assert.assertEquals(currentCompPrice, itemTotalPrice, "[ERR] Total price is not correct!");
+    }
+
+    public void verifyTotalPayment() {
+        Map<String, Double> priceMap = this.shoppingCartPage.cartFooterComponent().cartTotalComponent().priceMap();
+        Double subTotal = priceMap.get(ComputerPriceType.subTotal);
+        Double shipping = priceMap.get(ComputerPriceType.shipping);
+        Double tax = priceMap.get(ComputerPriceType.tax);
+        Double expectedTotal = subTotal + shipping + tax;
+        Double total = priceMap.get(ComputerPriceType.total);
+
+        Assert.assertEquals(total, expectedTotal, "[ERR] Total payment is not correct!");
+
+        this.shoppingCartPage.cartFooterComponent().cartTotalComponent().termOfService().click();
+        this.shoppingCartPage.cartFooterComponent().cartTotalComponent().checkoutBtn().click();
     }
 }

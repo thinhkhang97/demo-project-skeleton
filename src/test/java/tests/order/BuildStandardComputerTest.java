@@ -27,6 +27,7 @@ public class BuildStandardComputerTest extends BaseTest {
         // Go to Shopping cart Page
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject);
+        orderingComputerFlow.verifyTotalPayment();
     }
 
     @DataProvider()

@@ -1,5 +1,6 @@
 package models.pages.cart;
 
+import models.components.cart.CartFooterComponent;
 import models.components.cart.ShoppingCartItemComponent;
 import org.openqa.selenium.WebDriver;
 
@@ -11,7 +12,11 @@ public class ShoppingCartPage {
         this.driver = driver;
     }
 
-    public ShoppingCartItemComponent shoppingCartItemComp(){
+    public ShoppingCartItemComponent shoppingCartItemComp() {
         return new ShoppingCartItemComponent(driver);
+    }
+
+    public CartFooterComponent cartFooterComponent() {
+        return new CartFooterComponent(driver);
     }
 }
