@@ -5,6 +5,7 @@ import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import testdata.purchasing.BaseComputerPrice;
 import testdata.purchasing.ComputerDataObject;
 import testdata.purchasing.ComputerSpec;
 
@@ -50,9 +51,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
     public void verifyComputerAdded(ComputerDataObject simpleComputer) {
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
-
-        // TODO: need to handle this price
-        final double fixedPrice = 800.0;
+        System.out.println("COMP TYPE" + this.essentialCompGeneric.getType());
+        double baseComputerPrice = BaseComputerPrice.valueOf(this.essentialCompGeneric.getType()).getValue();
 
         // Get additional fee
         double additionalFees = 0.0;
@@ -61,10 +61,10 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         additionalFees += ComputerSpec.valueOf(simpleComputer.getHdd()).additionPrice();
 
         // Get Total current price for computer
-        double currentCompPrice = fixedPrice + additionalFees;
+        double currentCompPrice = baseComputerPrice + additionalFees;
 
         // Compare
         double itemTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
-        Assert.assertEquals(itemTotalPrice, currentCompPrice, "[ERR] Total price is not correct!");
+        Assert.assertEquals(currentCompPrice, itemTotalPrice, "[ERR] Total price is not correct!");
     }
 }

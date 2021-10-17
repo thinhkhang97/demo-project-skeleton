@@ -10,6 +10,8 @@ public abstract class ComputerEssentialComponent {
     private final WebDriver driver;
     private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
 
+    protected String type;
+
     public ComputerEssentialComponent(WebDriver driver) {
         this.driver = driver;
     }
@@ -38,4 +40,5 @@ public abstract class ComputerEssentialComponent {
         driver.findElement(addToCartBtnSel).click();
     }
 
+    public abstract String getType();
 }

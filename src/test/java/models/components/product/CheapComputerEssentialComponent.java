@@ -22,4 +22,9 @@ public class CheapComputerEssentialComponent extends ComputerEssentialComponent 
         selectCompSpecOption(type);
     }
 
+    @Override
+    public String getType() {
+        return "CHEAP";
+    }
+
 }

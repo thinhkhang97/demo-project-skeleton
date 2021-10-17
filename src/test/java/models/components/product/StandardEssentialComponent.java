@@ -33,6 +33,11 @@ public class StandardEssentialComponent extends ComputerEssentialComponent {
         selectOption(ramDropDown(), type);
     }
 
+    @Override
+    public String getType() {
+        return "STANDARD";
+    }
+
     private void selectOption(WebElement dropdown, String valuePrefix){
         String optionValue =  ComputerSpec.valueOf(valuePrefix).value().replaceAll(" ","");
         Select select = new Select(dropdown);
@@ -53,5 +58,6 @@ public class StandardEssentialComponent extends ComputerEssentialComponent {
     private WebElement ramDropDown() {
         return driver.findElements(productAttributeSel).get(RAM_DROPDOWN_INDEX);
     }
+
 
 }

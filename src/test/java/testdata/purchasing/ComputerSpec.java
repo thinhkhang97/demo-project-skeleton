@@ -1,7 +1,6 @@
 package testdata.purchasing;
 
 public enum ComputerSpec {
-
     PROCESSOR_SLOW("Slow", 0.0),
     PROCESSOR_MEDIUM("Medium", 15.0),
     PROCESSOR_FAST("Fast", 100.0),
