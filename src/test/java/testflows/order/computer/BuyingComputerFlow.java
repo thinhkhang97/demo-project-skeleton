@@ -40,6 +40,9 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         essentialCompGeneric.selectRAM(compData.getRam());
         essentialCompGeneric.selectHDD(compData.getHdd());
 
+        // Unselect all check boxes
+        essentialCompGeneric.unselectAllOption();
+
         // Add To cart
         essentialCompGeneric.clickOnAddToCartBtn();
         try {
@@ -51,7 +54,6 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
     public void verifyComputerAdded(ComputerDataObject simpleComputer) {
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
-        System.out.println("COMP TYPE" + this.essentialCompGeneric.getType());
         double baseComputerPrice = BaseComputerPrice.valueOf(this.essentialCompGeneric.getType()).getValue();
 
         // Get additional fee

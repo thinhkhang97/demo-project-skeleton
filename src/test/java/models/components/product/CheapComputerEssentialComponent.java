@@ -26,5 +26,4 @@ public class CheapComputerEssentialComponent extends ComputerEssentialComponent 
     public String getType() {
         return "CHEAP";
     }
-
 }
