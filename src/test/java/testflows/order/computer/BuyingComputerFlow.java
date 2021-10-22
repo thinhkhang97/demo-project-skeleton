@@ -1,6 +1,7 @@
 package testflows.order.computer;
 
 import models.components.product.computer.ComputerEssentialComponent;
+import models.pages.CheckoutOptionPage;
 import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
@@ -85,5 +86,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
 
         this.shoppingCartPage.cartFooterComponent().cartTotalComponent().termOfService().click();
         this.shoppingCartPage.cartFooterComponent().cartTotalComponent().checkoutBtn().click();
+
+        CheckoutOptionPage checkoutOptionPage = new CheckoutOptionPage(this.driver);
+        checkoutOptionPage.checkoutAsGuestOrRegisterComponent().checkoutAsGuessBtn().click();
     }
 }
