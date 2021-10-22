@@ -1,6 +1,6 @@
 package testflows.order.computer;
 
-import models.components.product.ComputerEssentialComponent;
+import models.components.product.computer.ComputerEssentialComponent;
 import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
