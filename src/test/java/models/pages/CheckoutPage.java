@@ -29,4 +29,8 @@ public class CheckoutPage {
     public ShippingMethod shippingMethod() {
         return new ShippingMethod(this.driver);
     }
+
+    public PaymentMethod paymentMethod() {
+        return new PaymentMethod(this.driver);
+    }
 }

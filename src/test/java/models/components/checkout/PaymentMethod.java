@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ShippingMethod {
+public class PaymentMethod {
     private final WebDriver driver;
 
-    private final By methodItemSel = By.cssSelector("#opc-shipping_method ul[class=method-list] li");
-    private final By continueBtnSel = By.cssSelector("#opc-shipping_method .shipping-method-next-step-button");
+    private final By methodItemSel = By.cssSelector("#opc-payment_method ul[class=method-list] li");
+    private final By continueBtnSel = By.cssSelector("#opc-payment_method .payment-method-next-step-button");
 
-    public ShippingMethod(WebDriver driver) {
+    public PaymentMethod(WebDriver driver) {
         this.driver = driver;
     }
 

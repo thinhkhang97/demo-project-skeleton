@@ -1,6 +1,6 @@
 package testflows.order.computer;
 
-import models.components.checkout.BillingAddress;
+import models.components.checkout.*;
 import models.components.product.computer.ComputerEssentialComponent;
 import models.pages.CheckoutOptionPage;
 import models.pages.CheckoutPage;
@@ -96,6 +96,11 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
     public void fillCheckoutInformation() {
         CheckoutPage checkoutPage = new CheckoutPage(this.driver);
         BillingAddress billingAddress = checkoutPage.billingAddress();
+        ShippingAddress shippingAddress = checkoutPage.shippingAddress();
+        ShippingMethod shippingMethod = checkoutPage.shippingMethod();
+        PaymentMethod paymentMethod = checkoutPage.paymentMethod();
+        PaymentInformation paymentInformation = checkoutPage.paymentInformation();
+        ConfirmOrder confirmOrder = checkoutPage.confirmOrder();
 
         billingAddress.inputFirstName().sendKeys("Khang");
         billingAddress.inputLastName().sendKeys("Nguyen");
@@ -107,5 +112,18 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
         billingAddress.inputZipCode().sendKeys("7000000");
         billingAddress.inputPhone().sendKeys("+123456789");
         billingAddress.continueBtn().click();
+
+        shippingAddress.continueBtn().click();
+
+        shippingMethod.methodItems().get(1).click();
+        shippingMethod.continueBtn().click();
+
+        paymentMethod.methodItems().get(0).click();
+        paymentMethod.continueBtn().click();
+
+        paymentInformation.continueBtn().click();
+
+        confirmOrder.confirmBtn().click();
+        confirmOrder.completedBtn().click();
     }
 }
