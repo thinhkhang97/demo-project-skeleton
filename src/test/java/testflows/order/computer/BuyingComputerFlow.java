@@ -1,6 +1,9 @@
 package testflows.order.computer;
 
-import models.components.product.ComputerEssentialComponent;
+import models.components.checkout.*;
+import models.components.product.computer.ComputerEssentialComponent;
+import models.pages.CheckoutOptionPage;
+import models.pages.CheckoutPage;
 import models.pages.ItemDetailsPage;
 import models.pages.cart.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
@@ -85,5 +88,42 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
 
         this.shoppingCartPage.cartFooterComponent().cartTotalComponent().termOfService().click();
         this.shoppingCartPage.cartFooterComponent().cartTotalComponent().checkoutBtn().click();
+
+        CheckoutOptionPage checkoutOptionPage = new CheckoutOptionPage(this.driver);
+        checkoutOptionPage.checkoutAsGuestOrRegisterComponent().checkoutAsGuessBtn().click();
+    }
+
+    public void fillCheckoutInformation() {
+        CheckoutPage checkoutPage = new CheckoutPage(this.driver);
+        BillingAddress billingAddress = checkoutPage.billingAddress();
+        ShippingAddress shippingAddress = checkoutPage.shippingAddress();
+        ShippingMethod shippingMethod = checkoutPage.shippingMethod();
+        PaymentMethod paymentMethod = checkoutPage.paymentMethod();
+        PaymentInformation paymentInformation = checkoutPage.paymentInformation();
+        ConfirmOrder confirmOrder = checkoutPage.confirmOrder();
+
+        billingAddress.inputFirstName().sendKeys("Khang");
+        billingAddress.inputLastName().sendKeys("Nguyen");
+        billingAddress.inputEmail().sendKeys("thinhkhang97@gmail.com");
+        billingAddress.selectCountryByName("United States");
+        billingAddress.selectStateByName("Alabama");
+        billingAddress.inputCity().sendKeys("NY");
+        billingAddress.inputAddress1().sendKeys("12 street 8");
+        billingAddress.inputZipCode().sendKeys("7000000");
+        billingAddress.inputPhone().sendKeys("+123456789");
+        billingAddress.continueBtn().click();
+
+        shippingAddress.continueBtn().click();
+
+        shippingMethod.methodItems().get(1).click();
+        shippingMethod.continueBtn().click();
+
+        paymentMethod.methodItems().get(0).click();
+        paymentMethod.continueBtn().click();
+
+        paymentInformation.continueBtn().click();
+
+        confirmOrder.confirmBtn().click();
+        confirmOrder.completedBtn().click();
     }
 }

@@ -1,7 +1,7 @@
 package tests.order;
 
 import io.qameta.allure.Description;
-import models.components.product.StandardEssentialComponent;
+import models.components.product.computer.StandardEssentialComponent;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -28,6 +28,7 @@ public class BuildStandardComputerTest extends BaseTest {
         goTo(URL.CART);
         orderingComputerFlow.verifyComputerAdded(computerDataObject);
         orderingComputerFlow.verifyTotalPayment();
+        orderingComputerFlow.fillCheckoutInformation();
     }
 
     @DataProvider()
