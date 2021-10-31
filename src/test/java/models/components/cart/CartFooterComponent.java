@@ -11,6 +11,8 @@ import java.util.Map;
 public class CartFooterComponent {
     private final WebDriver webDriver;
 
+    public CartTotalComponent cartTotalComponent;
+
     public CartFooterComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
@@ -21,7 +23,10 @@ public class CartFooterComponent {
 
 
     public CartTotalComponent cartTotalComponent() {
-        return new CartTotalComponent(webDriver);
+        if (this.cartTotalComponent == null) {
+            this.cartTotalComponent = new CartTotalComponent(webDriver);
+        }
+        return this.cartTotalComponent;
     }
 
     public static class CartShippingComponent {

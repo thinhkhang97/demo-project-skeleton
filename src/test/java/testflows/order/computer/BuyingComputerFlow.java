@@ -1,5 +1,6 @@
 package testflows.order.computer;
 
+import models.components.cart.CartComponent;
 import models.components.checkout.*;
 import models.components.product.computer.ComputerEssentialComponent;
 import models.pages.CheckoutOptionPage;
@@ -15,7 +16,7 @@ import testdata.purchasing.ComputerSpec;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
+public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
     private final WebDriver driver;
     private T essentialCompGeneric;
@@ -74,6 +75,24 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent>{
         // Compare
         double itemTotalPrice = shoppingCartPage.shoppingCartItemComp().itemTotalPrice();
         Assert.assertEquals(currentCompPrice, itemTotalPrice, "[ERR] Total price is not correct!");
+
+        // Verify detail in cart
+        for (CartComponent.CartItemRowData cartItemRowData : shoppingCartPage.cartComponent().cartItemRowData()) {
+
+            // Verify processor type
+            Assert.assertTrue(cartItemRowData.getProductAttributes().contains(
+                    ComputerSpec.valueOf(simpleComputer.getProcessorType()).value()),
+                    "[ERR] Missing CPU information");
+
+            // Verify HDD
+            Assert.assertTrue(cartItemRowData.getProductAttributes().contains((
+                    ComputerSpec.valueOf(simpleComputer.getHdd()).value()
+            )), "[ERR] Missing HDD information");
+
+            // Verify name and link
+            Assert.assertNotNull(cartItemRowData.getProductName(), "[ERR] Missing product name");
+            Assert.assertNotNull(cartItemRowData.getProductNameLink(), "[ERR] Missing product name link");
+        }
     }
 
     public void verifyTotalPayment() {
