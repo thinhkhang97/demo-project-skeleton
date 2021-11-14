@@ -1,5 +1,6 @@
 package models.components.checkout;
 
+import models.components.cart.AbstractCartComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
