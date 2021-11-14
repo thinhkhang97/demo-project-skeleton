@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartComponent {
+public abstract class AbstractCartComponent {
 
     WebDriver driver;
 
@@ -16,13 +16,16 @@ public class CartComponent {
     private final By productNameSel = By.cssSelector(".product-name");
     private final By productAttributeSel = By.cssSelector(".attributes");
     private final By productUnitPriceSel = By.cssSelector(".product-unit-price");
-    private final By qtyInputSel = By.cssSelector(".qty-input");
     private final By productSubTotalSel = By.cssSelector(".product-subtotal");
     private final By editSel = By.cssSelector(".edit-item");
 
-    public CartComponent(WebDriver driver) {
+    public AbstractCartComponent(WebDriver driver) {
         this.driver = driver;
     }
+
+    public abstract By qtySel();
+
+    public abstract Boolean isSummaryCartComponent();
 
     public List<CartItemRowData> cartItemRowData() {
         List<CartItemRowData> cartItemRowDataList = new ArrayList<>();
@@ -37,7 +40,10 @@ public class CartComponent {
             String productAttributes = productAttributeList.isEmpty() ? null : productAttributeList.get(0).getText();
 
             Double productUnitPrice = Double.parseDouble(cartItemRowComponent.findElement(productUnitPriceSel).getText());
-            Integer productQty = Integer.parseInt(cartItemRowComponent.findElement(qtyInputSel).getAttribute("value"));
+
+            Integer productQty = this.isSummaryCartComponent() ? Integer.parseInt(cartItemRowComponent.findElement(qtySel()).getText()) :
+                    Integer.parseInt(cartItemRowComponent.findElement(qtySel()).getAttribute("value"));
+
             Double productSubTotal = Double.parseDouble(cartItemRowComponent.findElement(productSubTotalSel).getText());
 
             List<WebElement> productEditComponentList = cartItemRowComponent.findElements(editSel);

@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class PaymentInformation {
     private final WebDriver driver;
 
@@ -16,5 +20,4 @@ public class PaymentInformation {
     public WebElement continueBtn() {
         return this.driver.findElement(continueBtnSel);
     }
-
 }
