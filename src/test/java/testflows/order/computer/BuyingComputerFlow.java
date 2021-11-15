@@ -14,7 +14,7 @@ import org.testng.Assert;
 import testdata.purchasing.BaseComputerPrice;
 import testdata.purchasing.ComputerDataObject;
 import testdata.purchasing.ComputerSpec;
-import testdata.purchasing.UserDataObject;
+import testdata.user.UserDataObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -220,7 +220,6 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
         Double billTotal = 0.0;
         for (String key : priceMap.keySet()) {
-            System.out.println(key);
             billTotal += priceMap.get(key);
         }
         Double finalTotal = priceMap.get(ComputerPriceType.total);
