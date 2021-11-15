@@ -220,7 +220,6 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
         Double billTotal = 0.0;
         for (String key : priceMap.keySet()) {
-            System.out.println(key);
             billTotal += priceMap.get(key);
         }
         Double finalTotal = priceMap.get(ComputerPriceType.total);

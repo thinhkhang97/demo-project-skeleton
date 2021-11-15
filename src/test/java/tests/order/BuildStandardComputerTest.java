@@ -33,15 +33,7 @@ public class BuildStandardComputerTest extends BaseTest {
         orderingComputerFlow.verifyTotalPayment();
 
         UserDataObject userDataObject = buildUserDataObject("/src/test/java/testdata/user/DefaultUserData.json");
-//        userDataObject.setFirstName("Khang");
-//        userDataObject.setLastName("Nguyen");
-//        userDataObject.setEmail("thinhkhang97@gmail.com");
-//        userDataObject.setCountry("United States");
-//        userDataObject.setState("Alabama");
-//        userDataObject.setCity("NY");
-//        userDataObject.setAddress1("12/4/13 street 9");
-//        userDataObject.setZipCode("12345");
-//        userDataObject.setPhone("123456789");
+
         orderingComputerFlow.fillCheckoutInformation(userDataObject, computerDataObject);
     }
 

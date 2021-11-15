@@ -32,8 +32,6 @@ public class BuildCheapComputerTest extends BaseTest {
         orderingComputerFlow.verifyComputerAdded(computerDataObject);
         orderingComputerFlow.verifyTotalPayment();
 
-
-
         UserDataObject userDataObject = buildUserDataObject("/src/test/java/testdata/user/DefaultUserData.json");
 
         orderingComputerFlow.fillCheckoutInformation(userDataObject, computerDataObject);
