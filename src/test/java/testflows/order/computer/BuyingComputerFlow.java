@@ -14,7 +14,7 @@ import org.testng.Assert;
 import testdata.purchasing.BaseComputerPrice;
 import testdata.purchasing.ComputerDataObject;
 import testdata.purchasing.ComputerSpec;
-import testdata.purchasing.UserDataObject;
+import testdata.user.UserDataObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;

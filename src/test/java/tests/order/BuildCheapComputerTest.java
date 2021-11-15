@@ -6,11 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
-import testdata.purchasing.UserDataObject;
+import testdata.user.UserDataObject;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
 import tests.BaseTest;
 import utils.data.ComputerTestDataGenerator;
+
+import static utils.data.CommonData.buildUserDataObject;
 
 public class BuildCheapComputerTest extends BaseTest {
 
@@ -30,16 +32,9 @@ public class BuildCheapComputerTest extends BaseTest {
         orderingComputerFlow.verifyComputerAdded(computerDataObject);
         orderingComputerFlow.verifyTotalPayment();
 
-        UserDataObject userDataObject = new UserDataObject();
-        userDataObject.setFirstName("Khang");
-        userDataObject.setLastName("Nguyen");
-        userDataObject.setEmail("thinhkhang97@gmail.com");
-        userDataObject.setCountry("United States");
-        userDataObject.setState("Alabama");
-        userDataObject.setCity("NY");
-        userDataObject.setAddress1("12/4/13 street 9");
-        userDataObject.setZipCode("12345");
-        userDataObject.setPhone("123456789");
+
+
+        UserDataObject userDataObject = buildUserDataObject("/src/test/java/testdata/user/DefaultUserData.json");
 
         orderingComputerFlow.fillCheckoutInformation(userDataObject, computerDataObject);
     }
