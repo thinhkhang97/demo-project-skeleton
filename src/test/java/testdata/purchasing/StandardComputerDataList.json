@@ -1,15 +1,18 @@
 [
   {
+    "basePrice": 1200.0,
     "processorType": "INTEL_22_GHZ",
     "ram": "RAM_8GB",
     "hdd": "HDD_400GB"
   },
   {
+    "basePrice": 1200.0,
     "processorType": "INTEL_25_GHZ",
     "ram": "RAM_4GB",
     "hdd": "HDD_400GB"
   },
   {
+    "basePrice": 1200.0,
     "processorType": "INTEL_22_GHZ",
     "ram": "RAM_2GB",
     "hdd": "HDD_400GB"

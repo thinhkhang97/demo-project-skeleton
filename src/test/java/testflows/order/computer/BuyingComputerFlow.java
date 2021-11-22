@@ -170,7 +170,6 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
 
     public void fillCheckoutInformation(UserDataObject userDataObject, ComputerDataObject computerDataObject) {
         CheckoutPage checkoutPage = new CheckoutPage(this.driver);
-        CheckoutCompletedPage checkoutCompletedPage = new CheckoutCompletedPage(this.driver);
 
         BillingAddress billingAddress = checkoutPage.billingAddress();
         ShippingAddress shippingAddress = checkoutPage.shippingAddress();
@@ -229,6 +228,8 @@ public class BuyingComputerFlow<T extends ComputerEssentialComponent> {
         confirmOrder.confirmBtn().click();
 
         // Verify order id
+        CheckoutCompletedPage checkoutCompletedPage = new CheckoutCompletedPage(this.driver);
+
         String orderId = checkoutCompletedPage.orderNumberText();
         String orderLink = checkoutCompletedPage.orderDetailLink();
         Assert.assertTrue(orderLink.endsWith(orderId), "[ERR] Not correct order id");

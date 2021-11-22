@@ -13,6 +13,7 @@ public abstract class ComputerEssentialComponent {
     private final WebDriver driver;
     private final By addToCartBtnSel = By.cssSelector("[id^='add-to-cart-button']");
     private final By allOptionSel = By.cssSelector(".option-list input");
+    private final By quantitySel = By.cssSelector(".qty-input");
 
     protected String type;
 
@@ -55,4 +56,10 @@ public abstract class ComputerEssentialComponent {
     }
 
     public abstract String getType();
+
+    public void setQuantity(int qty) {
+        WebElement inputQtyElem = this.driver.findElement(this.quantitySel);
+        inputQtyElem.clear();
+        inputQtyElem.sendKeys(String.valueOf(qty));
+    }
 }
