@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testdata.purchasing.ComputerDataObject;
+import testdata.purchasing.ComputerType;
 import testdata.url.URL;
 import testflows.order.computer.BuyingComputerFlow;
+import testflows.order.computer.BuyingComputerFlowEx;
 import tests.BaseTest;
 import utils.data.ComputerTestDataGenerator;
 
@@ -30,14 +32,18 @@ public class BuildMultiComputerTest extends BaseTest {
         ComputerDataObject randomStandardComputer = standardComputerData[new SecureRandom().nextInt(standardComputerData.length)];
 
         WebDriver driver = getDriver();
-        BuyingComputerFlow buyingComputerFlow = new BuyingComputerFlow(driver);
+        BuyingComputerFlowEx buyingComputerFlow = new BuyingComputerFlowEx(driver);
 
         goTo(URL.CHEAP_COMP_DETAILS);
         buyingComputerFlow.withComputerEssentialComp(CheapComputerEssentialComponent.class);
-        buyingComputerFlow.buildComputer(randomCheapComputer);
+        buyingComputerFlow.buildComputer(ComputerType.CHEAP_COMPUTER, randomCheapComputer, 2);
 
         goTo(URL.STANDARD_COMP_DETAILS);
         buyingComputerFlow.withComputerEssentialComp(StandardEssentialComponent.class);
-        buyingComputerFlow.buildComputer(randomStandardComputer);
+        buyingComputerFlow.buildComputer(ComputerType.STANDARD_COMPUTER, randomStandardComputer, 3);
+
+        goTo(URL.CART);
+        buyingComputerFlow.verifyAddedComputer();
+        buyingComputerFlow.verifyTotalPayment();
     }
 }

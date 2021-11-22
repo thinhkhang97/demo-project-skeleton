@@ -2,11 +2,20 @@ package testdata.purchasing;
 
 public class ComputerDataObject {
 
+    private Double basePrice;
     private String processorType;
     private String ram;
     private String hdd;
     private String os;
     private String software;
+
+    public Double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(Double basePrice) {
+        this.basePrice = basePrice;
+    }
 
     public String getProcessorType() {
         return processorType;
@@ -50,7 +59,7 @@ public class ComputerDataObject {
 
     @Override
     public String toString() {
-        return "CheapComputer{" +
+        return "ComputerDataObject{" +
                 "processorType='" + processorType + '\'' +
                 ", ram='" + ram + '\'' +
                 ", hdd='" + hdd + '\'' +

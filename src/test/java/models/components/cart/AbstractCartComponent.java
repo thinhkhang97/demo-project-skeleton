@@ -91,7 +91,7 @@ public abstract class AbstractCartComponent {
         }
 
         public String getProductName() {
-            return productName;
+            return productName.trim();
         }
 
         public String getProductNameLink() {
